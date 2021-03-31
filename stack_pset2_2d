@@ -1,0 +1,56 @@
+from queue import LifoQueue
+
+class NewStack:
+  stack = LifoQueue(maxsize = 75)
+  minElement = 0
+
+  def __init__(self):
+    print("ge")
+
+  def push (self, element):
+    if self.stack.qsize() == 0: 
+      self.minElement = element
+    if element <= self.minElement:
+      self.stack.put(self.minElement)
+      self.minElement = element
+    self.stack.put(element)
+
+  def pop (self):
+    elementor = self.stack.get()
+    if (elementor == self.minElement):
+      self.minElement = self.stack.get()
+    return elementor
+
+  def getMinValue(self):
+    return self.minElement
+
+
+
+
+newQue = NewStack()
+newQue.push(3)
+print(newQue.getMinValue())
+newQue.push(3)
+print(newQue.getMinValue())
+newQue.push(4)
+print(newQue.getMinValue())
+newQue.push(2)
+print(newQue.getMinValue())
+newQue.push(3)
+print(newQue.getMinValue())
+newQue.push(5)
+print(newQue.getMinValue())
+newQue.pop()
+print(newQue.getMinValue())
+newQue.pop()
+print(newQue.getMinValue())
+newQue.pop()
+print(newQue.getMinValue())
+newQue.push(3)
+print(newQue.getMinValue())
+newQue.push(1)
+print(newQue.getMinValue())
+newQue.pop()
+print(newQue.getMinValue())
+newQue.pop()
+print(newQue.getMinValue())
